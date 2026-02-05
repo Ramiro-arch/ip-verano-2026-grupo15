@@ -16,7 +16,10 @@ def home(request):
     y también el listado de favoritos del usuario, para luego enviarlo al template 'home.html'.
     Recordar que los listados deben pasarse en el contexto con las claves 'images' y 'favourite_list'.
     """
-    images = []
+    "cambio de prueba"
+    "cambios de prueba 2"
+    
+    images = services.getAllCharacters()
     favourite_list = []
 
     return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
