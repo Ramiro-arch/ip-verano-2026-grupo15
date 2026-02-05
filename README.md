@@ -1,5 +1,5 @@
 
-# Buscador Los Simpson
+# Buscador Los Simpsons
 
 ![Galería de Imágenes](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/The_Simpsons_Logo.svg/1200px-The_Simpsons_Logo.svg.png)
 
@@ -197,3 +197,4 @@ El trabajo debe ser entregado en la fecha estipulada en el cronograma. **Recorda
     - Merge & resolución de conflictos: [clic acá](https://www.youtube.com/watch?v=9YUaf-uxuRM).
 
     - Introducción a JSON: [clic acá](https://www.youtube.com/watch?v=FGG-UTCwlJw).
+
