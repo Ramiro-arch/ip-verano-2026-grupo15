@@ -1,5 +1,5 @@
 
-# Buscador Los Simpsons
+# Buscador Los Simpson
 
 ![Galería de Imágenes](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/The_Simpsons_Logo.svg/1200px-The_Simpsons_Logo.svg.png)
 
@@ -195,4 +195,5 @@ El trabajo debe ser entregado en la fecha estipulada en el cronograma. **Recorda
     - Introducción a GIT: [clic acá](https://www.youtube.com/watch?v=mzHWafbVRyU).
     - Manejo de ramas/branches: [clic acá](https://www.youtube.com/watch?v=BRY9gamL9PE).
     - Merge & resolución de conflictos: [clic acá](https://www.youtube.com/watch?v=9YUaf-uxuRM).
+
     - Introducción a JSON: [clic acá](https://www.youtube.com/watch?v=FGG-UTCwlJw).
