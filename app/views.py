@@ -17,6 +17,8 @@ def home(request):
     Recordar que los listados deben pasarse en el contexto con las claves 'images' y 'favourite_list'.
     """
     "cambio de prueba"
+    "cambios de prueba 2"
+    
     images = services.getAllCharacters()
     favourite_list = []
 
