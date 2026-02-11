@@ -9,11 +9,16 @@ from django.contrib.auth import get_user
 def getAllImages():
     """
     Obtiene todas las imágenes de personajes desde la API y las convierte en objetos Card.
-    
+
     Esta función debe obtener los datos desde transport, transformarlos en Cards usando 
     translator y retornar una lista de objetos Card.
     """
-    pass
+    
+    images = transport.getAllImages()
+    cards = []
+    for image in images:
+        cards.append(translator.fromRequestIntoCard(image))
+    return cards
 
 def filterByCharacter(name):
     """
@@ -48,6 +53,7 @@ def getAllFavourites(request):
     Si el usuario está autenticado, se deben obtener sus favoritos desde el repositorio,
     transformarlos en Cards usando translator y retornar la lista. Si no está autenticado, se retorna una lista vacía.
     """
+    
     pass
 
 def deleteFavourite(request):

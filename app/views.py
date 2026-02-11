@@ -18,11 +18,10 @@ def home(request):
     """
     "cambio de prueba"
     "cambios de prueba 2"
+    images= services.getAllImages()
+    favourite_list= services.getAllFavourites(request)
     
-    images = services.getAllCharacters()
-    favourite_list = []
-
-    return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
+    return render(request, 'home.html', {'images': images,'favourite_list': favourite_list})
 
 def search(request):
     """
