@@ -30,8 +30,9 @@
         <h2 class="text-center">La búsqueda no arrojó resultados...</h2>
         {% else %} {% for img in images %}
         <div class="col">
+            
             <!-- TODO: la card debe cambiar su border color dependiendo del estado del personaje:
-                 - Si está "Alive" (Vivo): mostrar borde verde (border-success)
+               - Si está "Alive" (Vivo): mostrar borde verde (border-success)
                  - Si está "Deceased" (Fallecido): mostrar borde gris (border-secondary)gut
                  - Si es cualquier otro estado: mostrar borde naranja (border-warning)
                  Documentación: https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#ifgi
@@ -42,7 +43,7 @@
                 {% elif img.status == 'Deceased' %} border-secondary
                 {% else %} border-warning
                 {% endif %}"
-                style="max-width: 540px;">
+                style="width:150">
                 <div class="row g-0">
                             <div class="col-md-4 d-flex align-items-center justify-content-center p-3">
                                 <img src="{{ img.image }}" class="rounded-circle border border-3 border-dark" alt="{{ img.name }}" style="width: 150px; height: 150px; object-fit: cover;">
@@ -53,7 +54,7 @@
                                     <h3 class="card-title text-dark fw-bold">{{ img.name }}</h3>
                                     <p class="card-text">
                                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                            <strong><em>"{{ img.phrases }}"</em></strong>
+                                            <strong><em>"{{ img.phrases}}"</em></strong>
                                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
                                     </p>
