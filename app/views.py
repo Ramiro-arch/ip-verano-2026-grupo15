@@ -18,11 +18,10 @@ def home(request):
     """
     "cambio de prueba"
     "cambios de prueba 2"
+    images= services.getAllImages()
+    favourite_list= services.getAllFavourites(request)
     
-    images = services.getAllCharacters()
-    favourite_list = []
-
-    return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
+    return render(request, 'home.html', {'images': images,'favourite_list': favourite_list})
 
 def search(request):
     """
@@ -32,7 +31,6 @@ def search(request):
     Se debe obtener el parámetro 'query' desde el POST, filtrar las imágenes según el nombre
     y renderizar 'home.html' con los resultados. Si no se ingresa nada, redirigir a 'home'.
     """
-    pass
 
 def filter_by_status(request):
     """
@@ -42,7 +40,8 @@ def filter_by_status(request):
     Se debe obtener el parámetro 'status' desde el POST, filtrar las imágenes según ese estado
     y renderizar 'home.html' con los resultados. Si no hay estado, redirigir a 'home'.
     """
-    pass
+    personajes_filtrados_porEstadoDeAnimo = services.filterByStatus(request.POST.get('status'))
+    return render(request, 'home.html', {'images': personajes_filtrados_porEstadoDeAnimo})
 
 # Estas funciones se usan cuando el usuario está logueado en la aplicación.
 @login_required
@@ -50,7 +49,11 @@ def getAllFavouritesByUser(request):
     """
     Obtiene todos los favoritos del usuario autenticado.
     """
-    pass
+    autentificado = request.user.is_authenticated
+    if autentificado:
+        user = request.user
+        getAllFavouritesByUser = services.getAllFavourites(request)
+    return render(request, 'favourites.html', {'favourites': getAllFavouritesByUser})
 
 @login_required
 def saveFavourite(request):
