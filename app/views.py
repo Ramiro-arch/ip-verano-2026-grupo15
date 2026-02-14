@@ -4,7 +4,6 @@ from django.shortcuts import redirect, render
 from .layers.services import services
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .services import filterByCharacter
 
 
 def index_page(request):
@@ -37,7 +36,7 @@ def search(request):
     
     if not query:
         return redirect('home')
-    resultados = filterByCharacter(query)
+    resultados = services.filterByCharacter(query)
     return render(request, 'home.html', {'images': resultados, 'query': query})
     
 
