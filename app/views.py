@@ -56,12 +56,7 @@ def filter_by_status(request):
 def getAllFavouritesByUser(request):
     """
     Obtiene todos los favoritos del usuario autenticado.
-    """
-    autentificado = request.user.is_authenticated
-    if autentificado:
-        user = request.user
-        getAllFavouritesByUser = services.getAllFavourites(request)
-    return render(request, 'favourites.html', {'favourites': getAllFavouritesByUser})
+    pass
 
 @login_required
 def saveFavourite(request):

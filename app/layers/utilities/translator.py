@@ -22,7 +22,6 @@ def fromRequestIntoCard(object):
     )
     return card
 
-
 # Usado cuando la información viene del template, para transformarla en una Card antes de guardarla en la base de datos.
 def fromTemplateIntoCard(templ): 
     card = Card(
