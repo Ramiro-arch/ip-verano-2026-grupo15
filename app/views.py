@@ -5,6 +5,7 @@ from .layers.services import services
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
+
 def index_page(request):
     return render(request, 'index.html')
 
@@ -31,6 +32,13 @@ def search(request):
     Se debe obtener el parámetro 'query' desde el POST, filtrar las imágenes según el nombre
     y renderizar 'home.html' con los resultados. Si no se ingresa nada, redirigir a 'home'.
     """
+    query = request.POST.get('query')
+    
+    if not query:
+        return redirect('home')
+    resultados = services.filterByCharacter(query)
+    return render(request, 'home.html', {'images': resultados, 'query': query})
+    
 
 def filter_by_status(request):
     """
