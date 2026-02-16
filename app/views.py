@@ -56,14 +56,15 @@ def filter_by_status(request):
 def getAllFavouritesByUser(request):
     """
     Obtiene todos los favoritos del usuario autenticado.
+    """
     pass
 
 @login_required
 def saveFavourite(request):
     """
     Guarda un personaje como favorito.
+    
     """
-    pass
 
 @login_required
 def deleteFavourite(request):
