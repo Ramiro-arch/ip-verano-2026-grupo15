@@ -13,18 +13,15 @@ def getAllImages():
     Esta función debe obtener los datos desde transport, transformarlos en Cards usando 
     translator y retornar una lista de objetos Card.
     """
-    
     images = transport.getAllImages()
-    cards = []
-    for image in images:
-        card = translator.fromRequestIntoCard(image)
+    cards = [translator.fromRequestIntoCard(img) for img in images]
+    for card in cards:
         if card.phrases and len(card.phrases)>0:
             fraseCorta= card.phrases[0]
             for frase in card.phrases:
                 if len(frase)< len(fraseCorta):
                     fraseCorta=frase
             card.phrases=fraseCorta
-        cards.append(card)
     return cards
 
 def filterByCharacter(name):
@@ -43,7 +40,7 @@ def filterByCharacter(name):
 def filterByStatus(status_name):
     """
     Filtra las cards de personajes según su estado (Alive/Deceased).
-    
+    .
     Se deben filtrar los personajes que tengan el estado igual al parámetro 'status_name'. Retorna una lista de Cards filtradas.
     """
     cards=getAllImages()
@@ -60,7 +57,8 @@ def saveFavourite(request):
     Se deben convertir los datos del request en una Card usando el translator,
     asignarle el usuario actual, y guardarla en el repositorio.
     """
-    
+    card= translator.fromRequestIntoCard(request)
+    card.user = request.user
 
 def getAllFavourites(request):
     """

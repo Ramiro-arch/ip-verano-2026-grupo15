@@ -20,7 +20,10 @@ def home(request):
     "cambio de prueba"
     "cambios de prueba 2"
     images= services.getAllImages()
-    favourite_list= services.getAllFavourites(request)
+    favourite_list = []
+    if request.user.is_authenticated:
+        
+        favourite_list = services.getAllFavourites(request.user)
     
     return render(request, 'home.html', {'images': images,'favourite_list': favourite_list})
 
@@ -32,13 +35,19 @@ def search(request):
     Se debe obtener el parámetro 'query' desde el POST, filtrar las imágenes según el nombre
     y renderizar 'home.html' con los resultados. Si no se ingresa nada, redirigir a 'home'.
     """
-    query = request.POST.get('query')
-    
-    if not query:
-        return redirect('home')
-    resultados = services.filterByCharacter(query)
-    return render(request, 'home.html', {'images': resultados, 'query': query})
-    
+    name = request.POST.get('query','').lower()
+    if name:
+            images = [img for img in services.getAllImages()
+            if name in img.name.lower()]
+            favourite_list = services.getAllFavouritesByUser(request.user) \
+                if request.user.is_authenticated else []
+            return render(request, 'home.html', {
+            'images': images,
+            'favourite_list': favourite_list
+        })
+    else:
+            return redirect('home')
+
 
 def filter_by_status(request):
     """
@@ -48,8 +57,12 @@ def filter_by_status(request):
     Se debe obtener el parámetro 'status' desde el POST, filtrar las imágenes según ese estado
     y renderizar 'home.html' con los resultados. Si no hay estado, redirigir a 'home'.
     """
-    personajes_filtrados_porEstadoDeAnimo = services.filterByStatus(request.POST.get('status'))
-    return render(request, 'home.html', {'images': personajes_filtrados_porEstadoDeAnimo})
+    type_filter= request.POST.get('status', '').lower()
+    if type_filter:
+        images = [img for img in services.getAllImages() if type_filter in img.status.lower()]
+        return render (request, 'home.html',{'images': images})
+    else:
+        return redirect('home')
 
 # Estas funciones se usan cuando el usuario está logueado en la aplicación.
 @login_required
