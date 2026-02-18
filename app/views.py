@@ -36,17 +36,16 @@ def search(request):
     y renderizar 'home.html' con los resultados. Si no se ingresa nada, redirigir a 'home'.
     """
     name = request.POST.get('query','').lower()
-    if name:
-            images = [img for img in services.getAllImages()
-            if name in img.name.lower()]
-            favourite_list = services.getAllFavouritesByUser(request.user) \
-                if request.user.is_authenticated else []
-            return render(request, 'home.html', {
-            'images': images,
-            'favourite_list': favourite_list
-        })
-    else:
-            return redirect('home')
+    if not name:
+        return redirect('home')
+    personajes= services.getAllImages()
+    filtradoPorNombre=[]
+    for personaje in personajes:
+        if personaje.name and name in personaje.name.lower():
+            filtradoPorNombre.append(personaje)
+    return render (request, 'home.html',{
+        'images': filtradoPorNombre,
+    })
 
 
 def filter_by_status(request):
@@ -59,14 +58,14 @@ def filter_by_status(request):
     """
     type_status= request.POST.get('status',''). lower()
     if not type_status:
-         return redirect('home')
+        return redirect('home')
     personajes = services.getAllImages()
     filtrados=[]
     for personaje in personajes:
         if personaje.status and type_status in personaje.status.lower():
             filtrados.append(personaje)
     return render(request, 'home.html', {'images': filtrados})
-                                              
+                        
 # Estas funciones se usan cuando el usuario está logueado en la aplicación.
 @login_required
 def getAllFavouritesByUser(request):
