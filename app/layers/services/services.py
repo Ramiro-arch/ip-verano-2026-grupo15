@@ -46,9 +46,10 @@ def filterByStatus(status_name):
     cards=getAllImages()
     cardsFiltradasPorEstado=[]
     for card in cards:
-        if card.status and card.status.lower() == status_name.lower():
-            cardsFiltradasPorEstado.append(card)
+       if card.status and card.status.lower() == status_name.lower():
+           cardsFiltradasPorEstado.append(card)
     return cardsFiltradasPorEstado
+
 # añadir favoritos (usado desde el template 'home.html')
 def saveFavourite(request):
     """

@@ -57,13 +57,16 @@ def filter_by_status(request):
     Se debe obtener el parámetro 'status' desde el POST, filtrar las imágenes según ese estado
     y renderizar 'home.html' con los resultados. Si no hay estado, redirigir a 'home'.
     """
-    type_filter= request.POST.get('status', '').lower()
-    if type_filter:
-        images = [img for img in services.getAllImages() if type_filter in img.status.lower()]
-        return render (request, 'home.html',{'images': images})
-    else:
-        return redirect('home')
-
+    type_status= request.POST.get('status',''). lower()
+    if not type_status:
+         return redirect('home')
+    personajes = services.getAllImages()
+    filtrados=[]
+    for personaje in personajes:
+        if personaje.status and type_status in personaje.status.lower():
+            filtrados.append(personaje)
+    return render(request, 'home.html', {'images': filtrados})
+                                              
 # Estas funciones se usan cuando el usuario está logueado en la aplicación.
 @login_required
 def getAllFavouritesByUser(request):
