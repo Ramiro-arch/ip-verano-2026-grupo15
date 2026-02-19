@@ -13,8 +13,12 @@ def getAllImages():
     Esta función debe obtener los datos desde transport, transformarlos en Cards usando 
     translator y retornar una lista de objetos Card.
     """
-    images = transport.getAllImages()
-    cards = [translator.fromRequestIntoCard(img) for img in images]
+    datos = transport.getAllImages()
+    cards=[]
+    for dato in datos:
+        card=translator.fromRequestIntoCard(dato)
+        cards.append(card)
+        
     for card in cards:
         if card.phrases and len(card.phrases)>0:
             fraseCorta= card.phrases[0]
