@@ -37,9 +37,10 @@ def filterByCharacter(name):
     cards= getAllImages()
     cardsFiltradasSegunNombre=[]
     for card in cards:
-        if name.lower() in card.name.lower():
+        if card.name and name.lower() in card.name.lower():
             cardsFiltradasSegunNombre.append(card)
-    return cardsFiltradasSegunNombre
+    return cardsFiltradasSegunNombre 
+
 
 def filterByStatus(status_name):
     """
